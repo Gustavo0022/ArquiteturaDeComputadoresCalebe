@@ -14,7 +14,7 @@ ALU DUT(
 );
 
 initial begin
-    $dumpfile("testeALU.vcd");
+    $dumpfile("ALU.vcd");
     $dumpvars(0, ALU_tb);
 
     $display("---- TESTBENCH UNIDADE LÓGICA E ARITMÉTICA MIPS ----");
