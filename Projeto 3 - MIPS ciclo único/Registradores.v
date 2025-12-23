@@ -22,7 +22,7 @@ assign regTarget = regs[addrTarget];
 
 always @(posedge clk) begin
     if(regWrite && addrDestination != 5'b0)begin 
-        regs[addrDestination] <= writeData;
+        regs[addrDestination] = writeData;
     end
 end
 
