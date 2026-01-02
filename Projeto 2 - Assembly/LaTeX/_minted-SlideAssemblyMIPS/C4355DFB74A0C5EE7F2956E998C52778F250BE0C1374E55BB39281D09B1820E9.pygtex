@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{x}{	\PYGZbs{}defverbatim[colored]\PYGZbs{}ASMMainPIII\PYGZob{}}
+\PYG{x}{		\PYGZbs{}begin\PYGZob{}minted\PYGZcb{}[frame=lines, linenos, fontsize=\PYGZbs{}scriptsize,tabsize=2,breaklines]\PYGZob{}nasm\PYGZcb{}}
+\PYG{x}{	\PYGZsh{}impressão da frase final e da posicao do numero procurado}
+\PYG{x}{	la \PYGZdl{}a0, lineFeed 	\PYGZsh{} \PYGZsq{}\PYGZbs{}n\PYGZsq{}}
+\PYG{x}{	li \PYGZdl{}v0, 4 	}
+\PYG{x}{	syscall}
+\PYG{x}{	}
+\PYG{x}{	la \PYGZdl{}a0, fraseFinal 	\PYGZsh{}imprime a frase final...}
+\PYG{x}{	syscall}
+\PYG{x}{	}
+\PYG{x}{	move \PYGZdl{}a0, \PYGZdl{}s3}
+\PYG{x}{	li \PYGZdl{}v0, 1		\PYGZsh{}...e a posição do valor desejado}
+\PYG{x}{	syscall}
+\PYG{x}{	}
+\PYG{x}{	beq \PYGZdl{}s3, \PYGZhy{}1, naoEncontradoTexto}
+\PYG{x}{	}
+\PYG{x}{	li \PYGZdl{}v0, 10 \PYGZsh{}encerra o programa}
+\PYG{x}{	syscall}
+\end{Verbatim}

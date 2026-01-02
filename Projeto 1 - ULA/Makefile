@@ -2,20 +2,22 @@
 IVERILOG = iverilog
 VVP = VVP
 GTKW = gtkwave
-DUT = ALU.v
-TB = ALU_tb.v
+DUT = alu_32.v
+TB = alu_32_tb.v
 EXEC = ALU.vvp
 VCD = ALU.vcd
 
-.PHONY: all compile run view clean
+.PHONY: all compile run comprun view clean
 
 all: compile run view
 
 compile: $(DUT)
-	$(IVERILOG) -o $(EXEC) somador1bit.v somador8bit.v somador32bit.v $(DUT) $(TB)
+	$(IVERILOG) -o $(EXEC) full_adder_1bit.v full_adder_8bit.v full_adder_32bit.v $(DUT) $(TB)
 
 run:	$(EXEC)
 	./$(EXEC)
+
+comprun: compile run
 
 view: $(VCD)
 	$(GTKW) $(VCD)

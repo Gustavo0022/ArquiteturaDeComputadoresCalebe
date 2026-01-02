@@ -1,0 +1,196 @@
+	.file	"binarosearcho.c"
+	.text
+	.globl	array
+	.data
+	.align 32
+	.type	array, @object
+	.size	array, 76
+array:
+	.long	1
+	.long	2
+	.long	8
+	.long	17
+	.long	20
+	.long	40
+	.long	42
+	.long	60
+	.long	75
+	.long	80
+	.long	81
+	.long	82
+	.long	84
+	.long	90
+	.long	125
+	.long	162
+	.long	200
+	.long	4096
+	.long	8192
+	.globl	size
+	.align 4
+	.type	size, @object
+	.size	size, 4
+size:
+	.long	19
+	.text
+	.globl	buscaBinaria
+	.type	buscaBinaria, @function
+buscaBinaria:
+.LFB6:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	movl	%edi, -20(%rbp)
+	movq	%rsi, -32(%rbp)
+	movl	%edx, -24(%rbp)
+	movl	-24(%rbp), %eax
+	movl	%eax, %edx
+	shrl	$31, %edx
+	addl	%edx, %eax
+	sarl	%eax
+	movl	%eax, -4(%rbp)
+	movl	$0, -8(%rbp)
+	movl	-24(%rbp), %eax
+	subl	$1, %eax
+	movl	%eax, -12(%rbp)
+	jmp	.L2
+.L6:
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-32(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	cmpl	%eax, -20(%rbp)
+	jge	.L3
+	movl	-4(%rbp), %eax
+	subl	$1, %eax
+	movl	%eax, -12(%rbp)
+	jmp	.L4
+.L3:
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-32(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	cmpl	%eax, -20(%rbp)
+	jl	.L4
+	movl	-4(%rbp), %eax
+	addl	$1, %eax
+	movl	%eax, -8(%rbp)
+.L4:
+	movl	-8(%rbp), %edx
+	movl	-12(%rbp), %eax
+	addl	%edx, %eax
+	movl	%eax, %edx
+	shrl	$31, %edx
+	addl	%edx, %eax
+	sarl	%eax
+	movl	%eax, -4(%rbp)
+.L2:
+	movl	-8(%rbp), %eax
+	cmpl	-12(%rbp), %eax
+	jg	.L5
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-32(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	cmpl	%eax, -20(%rbp)
+	jne	.L6
+.L5:
+	movl	-4(%rbp), %eax
+	cltq
+	leaq	0(,%rax,4), %rdx
+	movq	-32(%rbp), %rax
+	addq	%rdx, %rax
+	movl	(%rax), %eax
+	cmpl	%eax, -20(%rbp)
+	jne	.L7
+	movl	-4(%rbp), %eax
+	jmp	.L8
+.L7:
+	movl	$-1, %eax
+.L8:
+	popq	%rbp
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE6:
+	.size	buscaBinaria, .-buscaBinaria
+	.section	.rodata
+	.align 8
+.LC0:
+	.string	"Insira o valor que deseja procurar:"
+.LC1:
+	.string	"%d"
+	.align 8
+.LC2:
+	.string	"\nO valor esta armazenado na posicao %d"
+.LC3:
+	.string	" (nao encontrado)"
+	.text
+	.globl	main
+	.type	main, @function
+main:
+.LFB7:
+	.cfi_startproc
+	pushq	%rbp
+	.cfi_def_cfa_offset 16
+	.cfi_offset 6, -16
+	movq	%rsp, %rbp
+	.cfi_def_cfa_register 6
+	subq	$32, %rsp
+	movl	%edi, -20(%rbp)
+	movq	%rsi, -32(%rbp)
+	cmpl	$2, -20(%rbp)
+	jne	.L10
+	movq	-32(%rbp), %rax
+	addq	$8, %rax
+	movq	(%rax), %rax
+	movl	$10, %edx
+	movl	$0, %esi
+	movq	%rax, %rdi
+	call	__isoc23_strtol
+	movl	%eax, -8(%rbp)
+	jmp	.L11
+.L10:
+	movl	$.LC0, %edi
+	movl	$0, %eax
+	call	printf
+	leaq	-8(%rbp), %rax
+	movq	%rax, %rsi
+	movl	$.LC1, %edi
+	movl	$0, %eax
+	call	__isoc23_scanf
+.L11:
+	movl	size(%rip), %edx
+	movl	-8(%rbp), %eax
+	movl	$array, %esi
+	movl	%eax, %edi
+	call	buscaBinaria
+	movl	%eax, -4(%rbp)
+	movl	-4(%rbp), %eax
+	movl	%eax, %esi
+	movl	$.LC2, %edi
+	movl	$0, %eax
+	call	printf
+	cmpl	$-1, -4(%rbp)
+	jne	.L12
+	movl	$.LC3, %edi
+	movl	$0, %eax
+	call	printf
+.L12:
+	movl	$0, %eax
+	leave
+	.cfi_def_cfa 7, 8
+	ret
+	.cfi_endproc
+.LFE7:
+	.size	main, .-main
+	.ident	"GCC: (GNU) 15.2.1 20251211 (Red Hat 15.2.1-5)"
+	.section	.note.GNU-stack,"",@progbits

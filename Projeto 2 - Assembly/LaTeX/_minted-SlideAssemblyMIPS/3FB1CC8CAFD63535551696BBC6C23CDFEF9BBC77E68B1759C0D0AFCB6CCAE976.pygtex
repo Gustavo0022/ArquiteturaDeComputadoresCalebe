@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nl}{pivoMenorQueValor:}
+\PYG{+w}{	}\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t2}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}define pivo+1 como delimitador inicial}
+\PYG{+w}{	}\PYG{n+nf}{jal}\PYG{+w}{ }\PYG{n+nv}{bSearch}\PYG{+w}{ 	 	 }\PYG{c+c1}{\PYGZsh{}faz mais um passo recursivo em bSearch}
+\PYG{+w}{	}\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+nv}{finalizar}\PYG{+w}{ 	 	 }\PYG{c+c1}{\PYGZsh{}retorno recursivo de bSearch}
+\PYG{n+nl}{pivoMaiorQueValor:}
+\PYG{+w}{	}\PYG{n+nf}{subi}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t4}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}define pivo\PYGZhy{}1 como delimitador final}
+\PYG{+w}{	}\PYG{n+nf}{jal}\PYG{+w}{ }\PYG{n+nv}{bSearch}\PYG{+w}{ 		  }\PYG{c+c1}{\PYGZsh{}faz mais um passo recursivo em bSearch}
+\PYG{+w}{	}\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+nv}{finalizar}\PYG{+w}{ 		  }\PYG{c+c1}{\PYGZsh{}retorno recursivo de bSearch}
+
+\PYG{n+nl}{encontrado:}
+\PYG{+w}{	}\PYG{n+nf}{move}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s3}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t4}\PYG{+w}{ 		}\PYG{c+c1}{\PYGZsh{}define o valor final como o valor do pivo}
+\PYG{+w}{	}\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+nv}{finalizar}\PYG{+w}{			 }\PYG{c+c1}{\PYGZsh{}finaliza a busca com o valor encontrado}
+\PYG{n+nl}{finalizar:}
+\PYG{+w}{	}\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{ra}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{k+kc}{\PYGZdl{}}\PYG{n+nb}{sp}\PYG{p}{)}\PYG{+w}{		}\PYG{c+c1}{\PYGZsh{}carrega o endereço de retorno da stack no \PYGZdl{}ra}
+\PYG{+w}{	}\PYG{n+nf}{addi}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nb}{sp}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nb}{sp}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}\PYGZdq{}desaloca\PYGZdq{} espaço na stack}
+\PYG{+w}{	}\PYG{n+nf}{jr}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{ra}\PYG{+w}{						}\PYG{c+c1}{\PYGZsh{}retorna para o valor em \PYGZdq{}\PYGZdl{}ra\PYGZdq{}}
+\end{Verbatim}

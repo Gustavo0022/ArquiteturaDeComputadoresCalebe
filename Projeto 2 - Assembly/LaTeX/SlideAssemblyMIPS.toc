@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{Objetivo}{3}{0}{1}
+\beamer@sectionintoc {2}{A busca binária}{4}{0}{2}
+\beamer@sectionintoc {3}{Implementação recursiva em C}{12}{0}{3}
+\beamer@sectionintoc {4}{Implementação em MIPS Assembly}{13}{0}{4}
+\beamer@subsectionintoc {4}{1}{.data}{14}{0}{4}
+\beamer@subsectionintoc {4}{2}{A função "main"}{15}{0}{4}
+\beamer@subsectionintoc {4}{3}{A função "bSearch"}{23}{0}{4}
+\beamer@subsectionintoc {4}{4}{funções auxiliares}{32}{0}{4}
+\beamer@sectionintoc {5}{Conclusões}{36}{0}{5}
+\beamer@sectionintoc {6}{Referências}{38}{0}{6}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{}se o valor desejado não estiver no array, imprime o \PYGZdq{}\PYGZhy{}1\PYGZdq{}, bem como a mensagem de \PYGZdq{}não encontrado\PYGZdq{}}
+\PYG{n+nl}{naoEncontradoTexto:}
+\PYG{+w}{	}\PYG{n+nf}{la}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{fraseNaoEncontrado}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}encerra o programa}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\end{Verbatim}

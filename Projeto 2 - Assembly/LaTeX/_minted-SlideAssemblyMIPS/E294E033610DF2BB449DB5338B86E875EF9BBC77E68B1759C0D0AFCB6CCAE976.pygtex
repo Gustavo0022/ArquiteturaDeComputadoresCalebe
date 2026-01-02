@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{} obtem o tamanho do array \PYGZhy{}1 e o coloca em \PYGZdl{}t3}
+\PYG{+w}{	}\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{tamArray}
+\PYG{+w}{	}\PYG{n+nf}{subi}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t3}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}define registrador de valor final como \PYGZhy{}1 (não encontrado)}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s3}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}inicia a busca}
+\PYG{+w}{	}\PYG{n+nf}{jal}\PYG{+w}{ }\PYG{n+nv}{bSearch}
+\end{Verbatim}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nf}{.data}
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}array contendo valores a serem buscados (ordenado)}
+\PYG{+w}{	}\PYG{n+nl}{array:}\PYG{+w}{ }\PYG{n+nf}{.word}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{8}\PYG{p}{,}\PYG{l+m+mi}{17}\PYG{p}{,}\PYG{l+m+mi}{20}\PYG{p}{,}\PYG{l+m+mi}{40}\PYG{p}{,}\PYG{l+m+mi}{42}\PYG{p}{,}\PYG{l+m+mi}{60}\PYG{p}{,}\PYG{l+m+mi}{75}\PYG{p}{,}\PYG{l+m+mi}{80}\PYG{p}{,}\PYG{l+m+mi}{81}\PYG{p}{,}\PYG{l+m+mi}{82}\PYG{p}{,}\PYG{l+m+mi}{84}\PYG{p}{,}\PYG{l+m+mi}{90}\PYG{p}{,}\PYG{l+m+mi}{125}\PYG{p}{,}\PYG{l+m+mi}{162}\PYG{p}{,}\PYG{l+m+mi}{200}\PYG{p}{,}\PYG{l+m+mi}{4096}\PYG{p}{,}\PYG{l+m+mi}{8192}
+\PYG{+w}{	}\PYG{n+nl}{tamArray:}\PYG{+w}{ }\PYG{n+nf}{.word}\PYG{+w}{ }\PYG{l+m+mi}{19}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} tamanho do array}
+\PYG{+w}{	}\PYG{n+nl}{lineFeed:}\PYG{+w}{ }\PYG{n+nf}{.asciiz}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}\PYGZbs{}n\PYGZdq{}}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}quebra de linha}
+\PYG{+w}{	}\PYG{n+nl}{fraseInicial:}\PYG{+w}{ }\PYG{n+nf}{.asciiz}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}Insira o valor que deseja procurar: \PYGZdq{}}
+\PYG{+w}{	}\PYG{n+nl}{fraseFinal:}\PYG{+w}{ }\PYG{n+nf}{.asciiz}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{}O valor esta armazenado na posicao \PYGZdq{}}
+\PYG{+w}{	}\PYG{n+nl}{fraseNaoEncontrado:}\PYG{+w}{ }\PYG{n+nf}{.asciiz}\PYG{+w}{ }\PYG{l+s}{\PYGZdq{} (nao encontrado)\PYGZdq{}}
+\end{Verbatim}

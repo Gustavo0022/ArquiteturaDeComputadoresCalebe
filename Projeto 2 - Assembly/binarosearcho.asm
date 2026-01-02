@@ -74,7 +74,6 @@ naoEncontradoTexto:
 	li $v0, 10 #encerra o programa
 	syscall
 
-		
 bSearch:
 	bgt $t2, $t3, naoEncontrado #se inicio> final, o valor não foi encontrado(não está na lista)
 	
@@ -84,12 +83,12 @@ bSearch:
 	
 	mul $t6, $t4, 4 	#offset do array (cada valor possui 4 bytes) pivoOffset = pivo*4
 	add $t7, $t0, $t6	#valor para busca = valor do endereço do array + pivoOffset
-            lw $t5, 0($t7) 	#carrega valor na posicao do pivo em $t5
+    lw $t5, 0($t7) 	#carrega valor na posicao do pivo em $t5
             
-            beq $t5, $t1, encontrado #se array[pivo] == valorDesejado, retorna o valor encontrado
+    beq $t5, $t1, encontrado #se array[pivo] == valorDesejado, retorna o valor encontrado
             
-            #se array[pivo] > valor desejado, faz a busca na a segunda parte do array (de pivo+1 até final)
-            bgt $t5, $t1, vetorMaiorQueElemento 
+	#se array[pivo] > valor desejado, faz a busca na a segunda parte do array (de pivo+1 até final)
+    bgt $t5, $t1, vetorMaiorQueElemento 
             
             #senão, faz a busca na primeira metade do array (de inicio ate pivo+1)
 	addi $t2, $t4, 1

@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}impressão da frase final e da posicao do numero procurado}
+\PYG{+w}{	}\PYG{n+nf}{la}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{lineFeed}\PYG{+w}{ 	}\PYG{c+c1}{\PYGZsh{} \PYGZsq{}\PYGZbs{}n\PYGZsq{}}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ 	}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{n+nf}{la}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{fraseFinal}\PYG{+w}{ 	}\PYG{c+c1}{\PYGZsh{}imprime a frase final...}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+
+\PYG{+w}{	}\PYG{n+nf}{move}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s3}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{+w}{		}\PYG{c+c1}{\PYGZsh{}...e a posição do valor desejado}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{n+nf}{beq}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s3}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{naoEncontradoTexto}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{10}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}encerra o programa}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\end{Verbatim}

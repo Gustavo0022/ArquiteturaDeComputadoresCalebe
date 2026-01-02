@@ -1,0 +1,528 @@
+
+\documentclass[t]{beamer}
+\usetheme[university=bs, faculty=standard]{fibeamer}
+%\usepackage[style=authoryear,backend=bibtex]{biblatex}
+\usepackage{minted}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\bibliographystyle{ieeetr}
+
+
+\parskip=4pt
+
+\title{Busca Binária em MIPS Assembly}
+\subtitle{COMP0415 - Arquitetura de Computadores - T03}
+\author{Gustavo Gomes Tavares}
+\begin{document}
+
+\makeatletter
+\patchcmd{\beamer@sectionintoc}
+  {\vfill}
+  {\vskip\itemsep}
+  {}
+  {}
+\makeatother  
+
+	\frame[c]{\maketitle}
+	
+	\begin{frame}
+		\frametitle{Índice}
+		\tableofcontents
+	\end{frame}
+	
+	\section{Objetivo}
+	
+	\begin{frame}
+		\frametitle{Objetivos do trabalho}
+		\begin{itemize}
+			\item Aprender sobre Assembly e, mais especificamente, MIPS Assembly;
+			\item Colocar em prática os conhecimentos da disciplina de Arquitetura de Computadores;
+			\item Se divertir aprendendo.
+		\end{itemize}
+	\end{frame}
+	
+	\section{A busca binária}
+	\begin{frame}
+		\frametitle{A busca binária}
+			A busca binária é um algoritmo de busca para vetores ordenados de complexidade  de pior caso $O(log \; n)$ que pode ser implementado de forma iterativa ou recursiva.\cite{BrunoPrado}
+
+			Ela é ideal para buscar itens em vetores ordenados de forma eficiente, com um pior caso menor que a busca sequencial ($O(N)$).
+
+			Seu funcionamento consiste em:
+			\begin{itemize}
+				\item Obter o pivô do vetor a ser pesquisado
+				\item Caso o item seja o pivô, retorna a posição desse item. Caso seja maior que o pivô, pesquisa na segunda parte da lista (de pivô+1 a tamanho-1), e caso seja menor, pesquisa na primeira parte (de inicio a pivô-1).\cite{BrunoPrado}\cite{levitin}
+			\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{A busca binária}
+
+			Elemento desejado: 80
+			
+			Inicio = 0;
+
+			Final = $10-1 = 9$;
+
+			\center{Vetor inicial ( pivô = -1)}
+
+			\includegraphics[width=\textwidth]{Imagens/vetorInicial.png}
+
+	\end{frame}
+	\begin{frame}
+		\frametitle{A busca binária}
+			Elemento desejado: 80
+			
+			Inicio = 0;
+
+			Final = $10-1 = 9$;
+
+			É feito o cálculo do pivô:
+
+			\center{pivô = $\frac{(inicio+final)}{2} = \lfloor \frac{0+9}{2} \rfloor = 4$}
+
+			\includegraphics[width=\textwidth]{Imagens/vetorinicial pivo.png}
+	\end{frame}
+	\begin{frame}
+		\frametitle{A busca binária}
+
+			Elemento desejado: 80
+			
+			Inicio = pivô + 1 = 6;
+
+			Final = $10-1 = 9$;
+
+			Como vetor[5] = 13 e $13 < 80$, a busca ocorre apenas na segunda parte do vetor:
+
+			\includegraphics[width=\textwidth]{Imagens/vetorparte1.png}
+
+			
+	\end{frame}
+	\begin{frame}
+		\frametitle{A busca binária}
+
+			Elemento desejado: 80
+			
+			Inicio = 6;
+
+			Final = 9;
+
+			O pivô é recalculado:
+
+			\center{pivô = $\frac{(inicio+final)}{2} = \lfloor \frac{6+9}{2} \rfloor = 7$}
+
+			\includegraphics[width=\textwidth]{Imagens/vetorparte1pivo.png}		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{A busca binária}
+
+			Elemento desejado: 80
+			
+			Inicio = pivô + 1 =  8;
+
+			Final = 9;
+
+			Como vetor[7] =60 e $60 < 80$, a busca ocorre novamente apenas na segunda parte do vetor:
+
+			\includegraphics[width=\textwidth]{Imagens/vetorparte2.png}		
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{A busca binária}
+
+			Elemento desejado: 80
+			
+			Inicio = 8;
+
+			Final = 9;
+
+			O pivô é recalculado mais uma vez:
+
+			\center{pivô = $\frac{(inicio+final)}{2} = \lfloor \frac{8+9}{2} \rfloor = 8$}
+
+			\includegraphics[width=\textwidth]{Imagens/vetorparte2pivo.png}		
+	\end{frame}
+	\begin{frame}
+		\frametitle{A busca binária}
+
+			Elemento desejado: 80
+			
+			Inicio = 8;
+
+			Final = 9;
+			\center{Como o elemento do pivô é igual ao elemento desejado, é possível afirmar que o pivô está na posição \textbf{8}}
+
+			\includegraphics[width=\textwidth]{Imagens/vetorparte2 escolhido.png}		
+	\end{frame}
+	
+	\section{Implementação recursiva em C}
+
+	 \defverbatim[colored]\code{
+	 	\begin{minted}[frame=lines, linenos, fontsize=\small,tabsize=2,breaklines]{C}
+int binSearchRec(int valor, int *array, int inicio, int final){
+	if(inicio<=final){
+		int pivo =  (final+inicio)/2;
+		if(array[pivo] == valor) return pivo;
+		if(array[pivo] > valor)
+			return binSearchRec(valor,array,inicio,pivo-1);
+		else
+			return binSearchRec(valor,array,pivo+1,final);
+	}
+	return -1;
+}
+	 	\end{minted}
+	}
+	
+	
+	\begin{frame}{Implementação recursiva em C}
+		Aqui está a implementação recursiva da busca binária em C:
+		\code
+		
+	\end{frame}
+
+	\defverbatim[colored]\regs{
+
+		\begin{tabular}{l | l} 
+			\textcolor{red}{\$s0} = endereço do array & \textcolor{red}{\$t5} = valor armazenado no pivo\\
+			\textcolor{red}{\$s1} = valor a ser procurado & \textcolor{red}{\textcolor{red}{\$}t6} = pivo * 4 (offset) \\
+			\textcolor{red}{\$t2} = delimitador inicial(low) & \textcolor{red}{\$t7} = end. do array +  offset do pivo\\
+			\textcolor{red}{\$t3} = delimitador final  & \textcolor{red}{\$s3} = valor final\\
+			\textcolor{red}{\$t4} = pivo [(inicio+final)/2] 
+		\end{tabular}
+	}
+
+	\section{Implementação em MIPS Assembly}
+	\begin{frame}{Implementação em MIPS Assembly}
+
+		A implementação em MIPS Assembly utiliza recursividade, a fim de compreender melhor o uso da \textit{stack}, dos registradores \textcolor{red}{\$ra} (return address) e \textcolor{red}{\$sp} (stack pointer), bem como o uso da \textit{stack} para armazenar dados e endereços ao longo da execução do código.
+
+		Para a implementação, os registradores foram utilizados consistentemente para armazenar os seguintes valores:
+
+
+		\regs
+
+		
+	\end{frame}
+
+	\subsection{.data}
+
+	\defverbatim[colored]\ASMdata{
+		\begin{minted}[frame=lines, linenos, fontsize=\footnotesize,tabsize=2,breaklines]{nasm}
+.data
+	#array contendo valores a serem buscados (ordenado)
+	array: .word 1,2,8,17,20,40,42,60,75,80,81,82,84,90,125,162,200,4096,8192
+	tamArray: .word 19 # tamanho do array
+	lineFeed: .asciiz "\n" #quebra de linha
+	fraseInicial: .asciiz "Insira o valor que deseja procurar: "
+	fraseFinal: .asciiz "O valor esta armazenado na posicao "
+	fraseNaoEncontrado: .asciiz " (nao encontrado)"
+		\end{minted}
+	}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A seção .data}
+		A seção \textcolor{blue}{.data} do código ficou da seguinte maneira:
+		\ASMdata
+	\end{frame}
+
+	\subsection{A função "main"}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		A primeira parte da função main carrega o endereço do array (\textcolor{blue}{la}) e pede ao usuário o valor a ser procurado, com chamadas de sistema (\textcolor{blue}{syscall}) para exibir o texto inicial e solicitar o valor de um inteiro.
+
+		A função também carrega o valor \textcolor{olive}{0} ao registrador de delimitador inicial, e $(tamanho-1)$ ao registrador de delimitador final pois a busca começa com o pivo inicial calculado com $\frac{0 + (tamanho-1)}{2}$.
+
+		Após isso, o valor em \textcolor{red}{\$s3} (valor final) é definido como \textcolor{olive}{-1} por padrão, pois caso o valor procurado não esteja no vetor, basta imprimir \textcolor{olive}{-1}.
+		
+		Por fim, a busca é iniciada, com o valor de retorno da busca armazenado em \textcolor{red}{\$ra}.
+
+
+	\end{frame}
+
+	\defverbatim[colored]\ASMMainPI{
+		\begin{minted}[frame=lines, linenos, fontsize=\footnotesize,tabsize=2,breaklines]{nasm}
+main:
+	la $s0, array	#carrega o array
+	
+	#carrega e imprime a frase inicial
+	la $a0, fraseInicial 
+	li $v0, 4 #código de syscall para imprimir string
+	syscall
+	
+	#le o valor digitado e o coloca em $s1
+	li $v0, 5 #código de syscall para aramazenar inteiro
+	syscall
+	move $s1, $v0 
+
+	move $t2, $zero 	#Aloca o delimitador inicial (0) em $t2
+		\end{minted}
+	}
+
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		\ASMMainPI
+	\end{frame}
+
+	\defverbatim[colored]\ASMMainPII{
+		\begin{minted}[frame=lines, linenos,firstnumber=last,fontsize=\footnotesize,tabsize=2,breaklines]{nasm}
+	# obtem o tamanho do array -1 e o coloca em $t3
+	lw $t3, tamArray
+	subi $t3, $t3, 1
+	
+	#define registrador de valor final como -1 (não encontrado)
+	li $s3, -1
+	#inicia a busca
+	jal bSearch
+		\end{minted}
+	}
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		\ASMMainPII
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		Os sinais e módulos utilizados para a pseudoinstrução \textcolor{blue}{la} (load address), dividida em \textcolor{blue}{lui} e \textcolor{blue}{ori}, bem como para as instruções tipo I podem ser visualizados a partir do plugin X-Ray do simulador MARS:
+		
+		\center{\includegraphics[width=0.8\textwidth]{Imagens/Xrayladress.png}}
+		
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		Para instruções tipo R, como a pseudoinstrução \textcolor{blue}{move}, a visualização do Xray é a seguinte:
+
+		\center{\includegraphics[width=0.8\textwidth]{Imagens/Xrayaddu.png}}
+		
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		Para instruções tipo J, como o \textcolor{blue}{jal} (jump-and-link), que além de executar outra função, armazena o endereço de retorno do ponto atual de execução, os sinais executados são:
+
+		\center{\includegraphics[width=0.7\textwidth]{Imagens/XrayJal.png}}
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		A segunda parte da função main é executada após a busca binária ser concluída, e as informações finais são impressas. Primeiramente, é impressa uma quebra de linha, e depois a frase final, seguida da posição em que o valor desejado está armazenado no vetor. 
+		
+		Caso o valor seja \textcolor{olive}{-1}, indicando que o valor não está armazenado no vetor, o programa imprime ainda um texto de "não encontrado" para fácil visualização do resultado.
+
+		Por fim, uma chamada de sistema encerra o programa.
+	
+	\end{frame}
+
+	\defverbatim[colored]\ASMMainPIII{
+		\begin{minted}[frame=lines, linenos, firstnumber=last, fontsize=\scriptsize,tabsize=2,breaklines]{nasm}
+	#impressão da frase final e da posicao do numero procurado
+	la $a0, lineFeed 	# '\n'
+	li $v0, 4 	
+	syscall
+	
+	la $a0, fraseFinal 	#imprime a frase final...
+	syscall
+
+	move $a0, $s3
+	li $v0, 1		#...e a posição do valor desejado
+	syscall
+	
+	beq $s3, -1, naoEncontradoTexto
+	li $v0, 10 #encerra o programa
+	syscall
+	\end{minted}
+	}
+
+	\begin{frame}{Implementação em MIPS Assembly}
+		\framesubtitle{A função "main"}
+		\ASMMainPIII
+
+	\end{frame}
+
+
+
+	\subsection{A função "bSearch"}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		Essa função é a parte recursiva da busca, responsável por armazenar o endereço de retorno na \textit{stack}, utilizando o \textcolor{red}{\$sp}. 
+		
+		Caso o delimitador inicial seja maior que o delimitador final, indicando que o valor não foi encontrado no vetor, o fluxo do programa é desviado para a função que finaliza a execução com valor não encontrado. Caso contrário, o fluxo continua.
+
+		Após essa condicional, o valor do pivô é calculado, com a soma do valor inicial com o valor final, e a divisão desse resultado por 2 (utilizando \textit{shift right} por eficiência).
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		Com o pivô calculado, é necessário determinar o offset no array. Considerando que cada inteiro possui 4 bytes, o valor do pivô é multiplicado por 4 com um \textit{shift left}. 
+
+		O endereço do pivô no array é obtido a partir da soma do endereço do array (em \textcolor{red}{\$s0}) com o offset do pivô.
+
+		Caso o valor do pivô seja o valor desejado, a função para aqui. Caso contrário, um de dois caminhos é tomado:
+		\begin{itemize}
+			\item Se $[pivo] > valDesejado$, desvio para \textcolor{purple}{\textit{pivoMaiorQueValor}}
+			\item Se $[pivo] < valDesejado$, desvio para \textcolor{purple}{\textit{pivoMenorQueValor}}
+		
+		\end{itemize}
+	
+	\end{frame}
+
+	\defverbatim[colored]\ASMbSearchPI{
+		\begin{minted}[frame=lines, linenos, fontsize=\footnotesize,tabsize=2,breaklines]{nasm}
+bSearch:
+	addi $sp,$sp, -4	 #aloca espaço na stack para armazenar o return address (em $ra)
+	sw $ra, 0($sp)		 #armazena o valor de $ra na stack
+	
+	#caso base: valor não encontrado.
+	bgt, $t2,$t3, finalizar #se del. inicial > del. final, finaliza
+	
+	add $t4, $t2, $t3	# pivo = inicio+final
+	srl $t4, $t4, 1 	 # pivo = pivo/2
+	
+	sll $t6, $t4, 2		#offset pivo (pivo*4)
+	add $t7,$s0,$t6		#array+offset pivo
+	lw $t5, 0($t7) 		#carrega valor do pivo no registrador
+	\end{minted}
+	}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		\ASMbSearchPI
+		
+	\end{frame}
+
+		\defverbatim[colored]\ASMbSearchPII{
+		\begin{minted}[frame=lines, linenos,firstnumber=last, fontsize=\footnotesize,tabsize=2,breaklines]{nasm}
+	beq $t5, $s1, encontrado #se o valor do pivo for o valor desejado, desvia para finalizar função
+	
+	bgt $t5, $s1, pivoMaiorQueValor # se o valor do pivo for maior que o valor desejado, desvia para determinar novos delimitadores
+	
+	blt $t5, $s1, pivoMenorQueValor # se o valor do pivo for menor que o valor desejado, desvia para determinar novos delimitadores
+	\end{minted}
+	}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		\ASMbSearchPII
+		
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
+		O diagrama gerado pelo MIPS Xray para a instrução \textcolor{blue}{sw} é:
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/Xraysw.png}}
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
+		Já para a instrução instrução \textcolor{blue}{lw}, o diagrama foi:
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/XrayLw.png}}
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
+		Para as instruções de \textit{shift left} e \textit{shift right}, o mapa gerado é:
+		\center{\includegraphics[width=0.7\textwidth]{Imagens/XraySlr.png}}
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
+		Para as instruções de desvio condicional, como \textcolor{blue}{bgt} e \textcolor{blue}{blt}, é usada uma combinação de \textcolor{blue}{slt} e \textcolor{blue}{bne}. O diagrama para \textcolor{blue}{slt} é :
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/XraySlt.png}}
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
+		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
+		Já para o \textcolor{blue}{bne}, e similarmente, para o \textcolor{blue}{beq}, o diagrama é :
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/XrayBne.png}}
+	\end{frame}
+
+	\subsection{funções auxiliares}
+
+	\begin{frame}{Implementação em MIPS Assembly}{Funções auxiliares}
+		As funções auxiliares são utilizadas para definir as novas condições do passo recursivo, ou para finalizar a recursão:
+		\begin{itemize}
+			\item \textcolor{purple}{pivoMenorQueValor}: modifica o delimitador inicial para que seja a posicao do $pivo + 1$, e faz uma nova chamada de \textcolor{purple}{bSearch};
+			\item \textcolor{purple}{pivoMaiorQueValor}: modifica o delimitador final para que seja a posicao do $pivo - 1$, e faz uma nova chamada de \textcolor{purple}{bSearch};
+			\item \textcolor{purple}{encontrado}: salva o índice contido no pivo como o resultado da busca e inicia o retorno das chamadas;
+			\item \textcolor{purple}{finalizar}: carrega o endereço de retorno armazenado na \textit{stack} em \textcolor{red}{\$ra} e retorna o fluxo da chamada anterior.
+		\end{itemize}
+	\end{frame}
+
+	\defverbatim[colored]\ASMaux{
+		\begin{minted}[frame=lines, linenos, fontsize=\scriptsize,tabsize=2,breaklines]{nasm}
+pivoMenorQueValor:
+	addi $t2, $t4, 1	#define pivo+1 como delimitador inicial
+	jal bSearch 	 	 #faz mais um passo recursivo em bSearch
+	j finalizar 	 	 #retorno recursivo de bSearch
+pivoMaiorQueValor:
+	subi $t3, $t4, 1	#define pivo-1 como delimitador final
+	jal bSearch 		  #faz mais um passo recursivo em bSearch
+	j finalizar 		  #retorno recursivo de bSearch
+
+encontrado:
+	move $s3, $t4 		#define o valor final como o valor do pivo
+	j finalizar			 #finaliza a busca com o valor encontrado
+finalizar:
+	lw $ra, 0($sp)		#carrega o endereço de retorno da stack no $ra
+	addi $sp, $sp, 4	#"desaloca" espaço na stack
+	jr $ra						#retorna para o valor em "$ra"
+		\end{minted}
+	}
+
+	\begin{frame}{Implementação em MIPS Assembly}{Funções auxiliares}
+		\ASMaux
+	\end{frame}
+
+
+	\defverbatim[colored]\ASMauxPII{
+		\begin{minted}[frame=lines, linenos,firstnumber=last, fontsize=\scriptsize,tabsize=2,breaklines]{nasm}
+#se o valor desejado não estiver no array, imprime o "-1", bem como a mensagem de "não encontrado"
+naoEncontradoTexto:
+	la $a0, fraseNaoEncontrado
+	li $v0, 4
+	syscall
+	
+	li $v0, 10 #encerra o programa
+	syscall
+		\end{minted}
+	}
+
+	\begin{frame}{Implementação em MIPS Assembly}{Funções auxiliares}
+		A última função auxiliar serve para imprimir o texto de "não encontrado", caso, na \textcolor{purple}{main}, seja identificado que o valor armazenado no registrador de "valor final" seja \textcolor{olive}{-1}.
+		\ASMauxPII
+	\end{frame}
+
+	\begin{frame}{Implementação em MIPS Assembly}{Funções auxiliares}
+		O diagrama produzido pelo Xray para a instrução \textcolor{blue}{jr} foi:
+
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/XrayJr.png}}
+	
+	\end{frame}
+
+	\section{Conclusões}
+	\begin{frame}{Conclusões}
+		Após a implementação das versões iterativa e recursiva da busca binária, foi possível compreender muito bem a programação em baixo nível, com o gerenciamento de registradores, da stack e as otimizações necessárias para o funcionamento do código.
+
+		A produção do código em Assembly se baseou em reproduzir quase que fielmente a versão em C, a fim de se obter parâmetros de comparação para o funcionamento do programa.
+
+		Junto a isso, o código em C também foi compilado para assembly para motivos de comparação, e é evidente a quantidade de otimizações na produção de um código em assembly do zero se comparado com a conversão baixo nível $\rightarrow$ alto nível.
+	\end{frame}
+	
+	\begin{frame}{Conclusões}
+		Ainda é possível otimizar mais o código em assembly, com pontos como:
+		\begin{itemize}
+			\item Junção dos valores de "lineFeed" e "Frase final" em uma só variável, reduzindo o número de instruções e chamadas de sistema;
+			\item Eliminação de \mintinline{nasm}|blt $t5, $s1, pivoMenorQueValor| de \textcolor{purple}{bSearch}, afinal a próxima função executada já é \textcolor{purple}{pivoMenorQueValor};
+			\item Transformar a função de recursiva para iterativa também garante melhor tempo de execução, pois não é necessário salvar endereços na pilha.
+		\end{itemize}
+	\end{frame}
+
+	\section{Referências}
+	\begin{frame}{Referências}
+		\bibliography{SlideAssemblyMIPS}
+	\end{frame}
+
+
+\end{document}

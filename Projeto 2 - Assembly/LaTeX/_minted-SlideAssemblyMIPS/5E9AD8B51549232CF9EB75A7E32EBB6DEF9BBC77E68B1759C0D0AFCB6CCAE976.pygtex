@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{	}\PYG{n+nf}{beq}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t5}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{encontrado}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}se o valor do pivo for o valor desejado, desvia para finalizar função}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{n+nf}{bgt}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t5}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{pivoMaiorQueValor}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} se o valor do pivo for maior que o valor desejado, desvia para determinar novos delimitadores}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{n+nf}{blt}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t5}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s1}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{pivoMenorQueValor}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{} se o valor do pivo for menor que o valor desejado, desvia para determinar novos delimitadores}
+\end{Verbatim}

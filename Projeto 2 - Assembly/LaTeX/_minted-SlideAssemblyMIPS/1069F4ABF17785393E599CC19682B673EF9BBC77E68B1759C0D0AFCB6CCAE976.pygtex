@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nl}{main:}
+\PYG{+w}{	}\PYG{n+nf}{la}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{array}\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}carrega o array}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}\PYGZsh{}carrega e imprime a frase inicial}
+\PYG{+w}{	}\PYG{n+nf}{la}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{a0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nv}{fraseInicial}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{4}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}código de syscall para imprimir string}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\PYG{+w}{	}
+\PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}le o valor digitado e o coloca em \PYGZdl{}s1}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}código de syscall para aramazenar inteiro}
+\PYG{+w}{	}\PYG{n+nf}{syscall}
+\PYG{+w}{	}\PYG{n+nf}{move}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s1}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}
+
+\PYG{+w}{	}\PYG{n+nf}{move}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{t2}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{zero}\PYG{+w}{ 	}\PYG{c+c1}{\PYGZsh{}Aloca o delimitador inicial (0) em \PYGZdl{}t2}
+\end{Verbatim}
