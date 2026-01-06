@@ -1,4 +1,4 @@
-module memoria(
+module memory(
     input wire clock, rst
     input wire [15:0] addr,
     input wire [31:0] writeData, readData,

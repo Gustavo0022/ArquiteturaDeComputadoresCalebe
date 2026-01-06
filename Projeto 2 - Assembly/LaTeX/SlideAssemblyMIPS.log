@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.27)  2 JAN 2026 20:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.27)  5 JAN 2026 22:13
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1461,7 +1461,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  128i,16n,122p,1094b,967s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/arev/ArevSans-Oblique.pfb></usr/share/texlive/texmf-dist/fonts/type1/google/carlito/Crlt-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/google/carlito/Crlt-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/google/carlito/Crlt-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/dejavu/DejaVuSansMono-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/dejavu/DejaVuSansMono-Oblique.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/dejavu/DejaVuSansMono.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chb7m.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chb7t.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/mathdesign/mdbch/md-chb7y.pfb>
-Output written on SlideAssemblyMIPS.pdf (38 pages, 2447304 bytes).
+Output written on SlideAssemblyMIPS.pdf (38 pages, 2447276 bytes).
 PDF statistics:
  397 PDF objects out of 1000 (max. 8388607)
  289 compressed objects within 3 object streams
