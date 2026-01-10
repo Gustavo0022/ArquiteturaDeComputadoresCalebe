@@ -1,9 +1,9 @@
-#Busca binária, aprendida com Bruno Prado. Agora em assembly :P
+#Busca binaria, aprendida com Bruno Prado. Agora em assembly :P
 #lista de registradores
-# $s0 = endereço do array
+# $s0 = endereco do array
 # $s1 = valor a ser procurado
-# $t2 = delimitador inicial (necessário para indicar onde começa a particao da busca)
-# $t3 = delimitador final (necessário para indicar onde termina a partição de busca)
+# $t2 = delimitador inicial (necessario para indicar onde comeca a particao da busca)
+# $t3 = delimitador final (necessario para indicar onde termina a particao de busca)
 # $t4 = pivo [(inicio+final)/2] 
 # $t5 = valor armazenado no pivo
 # $t6 = pivo * 4 (offset)
@@ -26,11 +26,11 @@ main:
 	
 	#carrega e imprime a frase inicial
 	la $a0, fraseInicial 
-	li $v0, 4 		#código de syscall para imprimir string
+	li $v0, 4 		#codigo de syscall para imprimir string
 	syscall
 	
 	#le o valor digitado e o coloca em $s1
-	li $v0, 5 		#código de syscall para aramazenar inteiro
+	li $v0, 5 		#codigo de syscall para armazenar inteiro
 	syscall
 	move $s1, $v0 	#move o valor digitado para o registrador correspondente
 	
@@ -42,11 +42,11 @@ main:
 	subi $t3, $t3, 1 
 	
 	
-	li $s3, -1		#define registrador de valor final como -1 (não encontrado)
+	li $s3, -1		#define registrador de valor final como -1 (nao encontrado)
 	#inicia a busca
 	jal bSearch
 	
-	#impressão da frase final e da posicao do numero procurado
+	#impressao da frase final e da posicao do numero procurado
 	la $a0, lineFeed 	# '\n'
 	li $v0, 4 	
 	syscall
@@ -55,19 +55,19 @@ main:
 	syscall
 	
 	move $a0, $s3		
-	li $v0, 1		#...e a posição do valor desejado
+	li $v0, 1		#...e a posicao do valor desejado
 	syscall
 	
-	beq $s3, -1, naoEncontradoTexto #caso o valor de $s3 seja -1, desvia para a função de "não encontrado"
+	beq $s3, -1, naoEncontradoTexto #caso o valor de $s3 seja -1, desvia para a funcao de "nao encontrado"
 	
-	li $v0, 10		#código de syscall para encerrar o programa
+	li $v0, 10		#codigo de syscall para encerrar o programa
 	syscall
 		
 bSearch:
-	addi $sp,$sp, -4	#aloca espaço na stack para armazenar o return address (em $ra)
+	addi $sp,$sp, -4	#aloca espaco na stack para armazenar o return address (em $ra)
 	sw $ra, 0($sp)	#armazena o valor de $ra na stack
 	
-	#caso base: valor não encontrado. Como determinar:
+	#caso base: valor nao encontrado. Como determinar:
 	bgt, $t2,$t3, finalizar # se del. inicial > del. final, busca finalizada
 	
 	add $t4, $t2, $t3 	# pivo = inicio+final
@@ -96,17 +96,17 @@ encontrado:
 	move $s3, $t4 	#define o valor final como o valor do pivo
 	j finalizar		#finaliza a busca com o valor encontrado
 finalizar:
-	lw $ra, 0($sp)	#carrega o endereço de retorno da stack no $ra
-	addi $sp, $sp, 4	#"desaloca" espaço na stack
+	lw $ra, 0($sp)	#carrega o endereco de retorno da stack no $ra
+	addi $sp, $sp, 4	#"desaloca" espaco na stack
 	jr $ra		#retorna para o valor em "$ra"
 	
-#se o valor desejado não estiver no array, imprime o "-1", bem como a mensagem de "não encontrado"
+#se o valor desejado nao estiver no array, imprime o "-1", bem como a mensagem de "nao encontrado"
 naoEncontradoTexto:
-	la $a0, fraseNaoEncontrado #carrega o valor da string "(não encontrado)" em $a0
-	li $v0, 4		  #define código para imprimir string
+	la $a0, fraseNaoEncontrado #carrega o valor da string "(nao encontrado)" em $a0
+	li $v0, 4		  #define codigo para imprimir string
 	syscall
 	
-	li $v0, 10 #código de syscall para encerrar o programa
+	li $v0, 10 #codigo de syscall para encerrar o programa
 	syscall
 
 

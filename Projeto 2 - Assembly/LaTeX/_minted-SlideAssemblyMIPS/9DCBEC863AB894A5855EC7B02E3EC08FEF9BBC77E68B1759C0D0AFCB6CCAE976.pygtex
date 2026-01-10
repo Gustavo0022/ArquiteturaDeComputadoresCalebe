@@ -8,7 +8,7 @@
 \PYG{+w}{	}\PYG{n+nf}{syscall}
 \PYG{+w}{	}
 \PYG{+w}{	}\PYG{c+c1}{\PYGZsh{}le o valor digitado e o coloca em \PYGZdl{}s1}
-\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}código de syscall para aramazenar inteiro}
+\PYG{+w}{	}\PYG{n+nf}{li}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{5}\PYG{+w}{ }\PYG{c+c1}{\PYGZsh{}código de syscall para armazenar inteiro}
 \PYG{+w}{	}\PYG{n+nf}{syscall}
 \PYG{+w}{	}\PYG{n+nf}{move}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{s1}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{\PYGZdl{}}\PYG{n+nv}{v0}
 

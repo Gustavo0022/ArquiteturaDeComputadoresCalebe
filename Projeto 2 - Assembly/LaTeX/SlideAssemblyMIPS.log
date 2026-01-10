@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.27)  5 JAN 2026 22:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2025.12.27)  9 JAN 2026 22:51
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1284,7 +1284,7 @@ Overfull \hbox (3.59598pt too wide) in paragraph at lines 4--4
 \@verb\ASMMainPI=\box98
 \openout5 = `SlideAssemblyMIPS.pyg'.
 
- (./_minted-SlideAssemblyMIPS/85768AB6D5F03E9A4D17CC6CC4BEE599EF9BBC77E68B1759C0D0AFCB6CCAE976.pygtex
+ (./_minted-SlideAssemblyMIPS/9DCBEC863AB894A5855EC7B02E3EC08FEF9BBC77E68B1759C0D0AFCB6CCAE976.pygtex
 LaTeX Font Info:    Font shape `T1/DejaVuSansMono-TLF/b/n' will be
 (Font)              scaled to size 7.65005pt on input line 3.
 ) [16

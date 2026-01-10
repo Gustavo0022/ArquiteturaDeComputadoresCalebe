@@ -18,7 +18,7 @@ assign readData = memRead ? mem[addr[9:2]] : 32'b0;
 
 always @(posedge clock) begin
     if(memWrite) begin
-        mem[addr[9:2]] = writeData;
+        mem[addr[9:2]] <= writeData;
     end
 end
 
