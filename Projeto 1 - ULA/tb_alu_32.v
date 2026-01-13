@@ -49,6 +49,7 @@ endtask
 
 
 initial begin
+    a = 0; b = 0; alu_ctrl = 0;
     #10;
     
     //AND TESTS (with random numbers to see how it goes)

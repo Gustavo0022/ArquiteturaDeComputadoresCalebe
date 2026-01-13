@@ -295,15 +295,15 @@ main:
 
 	\begin{frame}{Implementação em MIPS Assembly}
 		\framesubtitle{A função "main"}
-		Para instruções tipo R, como a pseudoinstrução \textcolor{blue}{move}, a visualização do Xray é a seguinte:
+		Para instruções tipo R, como a pseudoinstrução \textcolor{blue}{move}, que move um endereço de um registrador para outro, a visualização do Xray é:
 
-		\center{\includegraphics[width=0.8\textwidth]{Imagens/Xrayaddu.png}}
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/Xrayaddu.png}}
 		
 	\end{frame}
 
 	\begin{frame}{Implementação em MIPS Assembly}
 		\framesubtitle{A função "main"}
-		Para instruções tipo J, como o \textcolor{blue}{jal} (jump-and-link), que além de executar outra função, armazena o endereço de retorno do ponto atual de execução, os sinais executados são:
+		Para instruções tipo J, como o \textcolor{blue}{jal} (jump-and-link), que além de pular para o endereço da função determinada, armazena o endereço de retorno do ponto atual de execução, os sinais executados são:
 
 		\center{\includegraphics[width=0.7\textwidth]{Imagens/XrayJal.png}}
 	\end{frame}
@@ -410,20 +410,20 @@ bSearch:
 
 	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
 		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
-		O diagrama gerado pelo MIPS Xray para a instrução \textcolor{blue}{sw} é:
+		O diagrama gerado pelo MIPS Xray para a instrução \textcolor{blue}{sw}, que armazena uma palavra em uma posição na memória, é:
 		\center{\includegraphics[width=0.9\textwidth]{Imagens/Xraysw.png}}
 	\end{frame}
 
 	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
 		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
-		Já para a instrução instrução \textcolor{blue}{lw}, o diagrama foi:
+		Já para a instrução instrução \textcolor{blue}{lw}, que carrega uma palavra da memória, o diagrama gerado é:
 		\center{\includegraphics[width=0.9\textwidth]{Imagens/XrayLw.png}}
 	\end{frame}
 
 	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
 		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
-		Para as instruções de \textit{shift left} e \textit{shift right}, o mapa gerado é:
-		\center{\includegraphics[width=0.7\textwidth]{Imagens/XraySlr.png}}
+		Para as instruções de \textit{shift left} e \textit{shift right}, que deslocam os bits de uma palavra para a esquerda (para multiplicar) e para a direita (para dividir), o mapa gerado é:
+		\center{\includegraphics[width=0.9\textwidth]{Imagens/XraySlr.png}}
 	\end{frame}
 
 	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
@@ -434,7 +434,7 @@ bSearch:
 
 	\begin{frame}{Implementação em MIPS Assembly}{A função "bSearch"}
 		%INCLUIR XRAYS DE TODAS AS INSTRUÇÕES DA BSEARCH
-		Já para o \textcolor{blue}{bne}, e similarmente, para o \textcolor{blue}{beq}, o diagrama é :
+		Já para o \textcolor{blue}{bne}, e similarmente, para o \textcolor{blue}{beq}, que compara dois registradores ou um registrador e um valor imediato, o diagrama é:
 		\center{\includegraphics[width=0.9\textwidth]{Imagens/XrayBne.png}}
 	\end{frame}
 
@@ -495,7 +495,7 @@ naoEncontradoTexto:
 	\end{frame}
 
 	\begin{frame}{Implementação em MIPS Assembly}{Funções auxiliares}
-		O diagrama produzido pelo Xray para a instrução \textcolor{blue}{jr} foi:
+		O diagrama produzido pelo Xray para a instrução \textcolor{blue}{jr}, que retorna para o endereço armazenado no \textcolor{red}{\$ra} é:
 
 		\center{\includegraphics[width=0.9\textwidth]{Imagens/XrayJr.png}}
 	
