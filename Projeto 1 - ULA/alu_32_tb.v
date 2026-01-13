@@ -181,14 +181,14 @@ initial begin
 
     check(expected);
 
-    //XNOR tests
-    $display("Testando XNOR");
+    //NOR tests
+    $display("Testando NOR");
 
     //random values
     a = $random(seed);
     b = $random(seed);
-    alu_ctrl = 4'b1100; //xnor
-    expected = ~(a ^ b);
+    alu_ctrl = 4'b1100; //nor
+    expected = ~(a | b);
     #10;
 
     check(expected);

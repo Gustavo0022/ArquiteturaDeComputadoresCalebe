@@ -67,7 +67,7 @@ always @(*) begin
         //junto ao overflow, pois a inversão do bit de sinal do overflow 
         //pode gerar um resultado falso para números enormes
         4'b0111: result = {31'b0, resultadoSomaSubtracao[31] ^ overflow};
-        4'b1100: result = ~(a ^ b); //XNOR
+        4'b1100: result = ~(a | b); //NOR
         default: result = 32'd0;
     endcase
 end

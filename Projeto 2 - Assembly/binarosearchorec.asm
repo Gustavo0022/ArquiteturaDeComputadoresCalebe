@@ -2,13 +2,14 @@
 #lista de registradores
 # $s0 = endereco do array
 # $s1 = valor a ser procurado
+# $s3 = posicao final
 # $t2 = delimitador inicial (necessario para indicar onde comeca a particao da busca)
 # $t3 = delimitador final (necessario para indicar onde termina a particao de busca)
 # $t4 = pivo [(inicio+final)/2] 
 # $t5 = valor armazenado no pivo
 # $t6 = pivo * 4 (offset)
 # $t7 = endereco do array + offset do pivo
-# $s3 = valor final
+
 
 .data
 	#array contendo valores a serem buscados (ordenado)
@@ -59,7 +60,6 @@ main:
 	syscall
 	
 	beq $s3, -1, naoEncontradoTexto #caso o valor de $s3 seja -1, desvia para a funcao de "nao encontrado"
-	
 	li $v0, 10		#codigo de syscall para encerrar o programa
 	syscall
 		
