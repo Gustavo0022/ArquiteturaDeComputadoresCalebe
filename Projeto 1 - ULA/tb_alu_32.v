@@ -1,7 +1,7 @@
 
 `timescale 1ns/1ns
 
-module alu_32_tb;
+module tb_alu_32;
 
 reg signed [31:0] a,b;
 reg [3:0] alu_ctrl;
@@ -22,7 +22,7 @@ alu_32 DUT(
 
 initial begin
     $dumpfile("ALU.vcd");
-    $dumpvars(0, alu_32_tb);
+    $dumpvars(0, tb_alu_32);
 
     $display("---- MIPS ARITHMETIC LOGIC UNIT TESTBENCH ----");
     $display("              by Gustavo Gomes  ");

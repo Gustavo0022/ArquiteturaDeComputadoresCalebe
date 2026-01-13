@@ -3,7 +3,7 @@ IVERILOG = iverilog
 VVP = VVP
 GTKW = gtkwave
 DUT = alu_32.v
-TB = alu_32_tb.v
+TB = tb_alu_32.v
 EXEC = ALU.vvp
 VCD = ALU.vcd
 

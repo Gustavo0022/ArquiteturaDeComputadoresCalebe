@@ -7,7 +7,7 @@ Esse projeto tem como propósito descrever em Verilog HDL a Unidade Lógica e Ar
 
 A ULA possui as operações de
 - Soma e subtração
-- AND, OR bitwise
+- AND e OR bitwise
 - Set on less than (slt)
 - NOR lógico
 
