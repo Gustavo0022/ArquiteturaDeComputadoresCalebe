@@ -1,8 +1,9 @@
 module memory(
     input wire clock, rst
     input wire [15:0] addr,
-    input wire [31:0] writeData, readData,
+    input wire [31:0] writeData, 
     input wire memWrite, memRead,
+    output wire [31:0] readData,
 );
 
 reg [31:0] mem [255:0];
