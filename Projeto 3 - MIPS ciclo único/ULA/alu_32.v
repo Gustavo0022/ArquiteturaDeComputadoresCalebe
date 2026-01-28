@@ -2,6 +2,7 @@ module alu_32(
     input wire [31:0] a,
     input wire[31:0] b,
     input wire [3:0] alu_ctrl,
+    input wire [4:0] shamt,
     output reg [31:0] result,
     output wire zero,
     output reg carry_out,
@@ -67,6 +68,8 @@ always @(*) begin
         //junto ao overflow, pois a inversão do bit de sinal do overflow 
         //pode gerar um resultado falso para números enormes
         4'b0111: result = {31'b0, resultadoSomaSubtracao[31] ^ overflow};
+        4'b1000: result = b << shamt;
+        4'b1001: result = b >> shamt;
         4'b1100: result = ~(a ^ b); //XNOR
         default: result = 32'd0;
     endcase

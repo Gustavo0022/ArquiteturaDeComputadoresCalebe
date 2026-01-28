@@ -1,4 +1,4 @@
-module shift_let2(
+module shift_left_32bit(
     input wire [31:0] in,
     output wire [31:0] out  
 );

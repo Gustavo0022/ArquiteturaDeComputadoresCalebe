@@ -4,10 +4,11 @@
     output wire [31:0] value
     );
 
-    assign value = PC;
+    reg [31:0] pc_reg;
+    assign value = pc_reg;
 
     always @(posedge clk) begin
-        PC <= (rst)? 32'b0 : next;
+        pc_reg <= (rst)? 32'b0 : next;
     end
 
     endmodule  

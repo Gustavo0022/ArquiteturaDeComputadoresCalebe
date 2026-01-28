@@ -1,4 +1,4 @@
-module shift_left26bit(
+module shift_left_26bit(
     input wire [25:0] in,
     output wire [27:0] out  
 );
