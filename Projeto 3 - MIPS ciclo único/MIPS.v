@@ -9,12 +9,14 @@ wire [1:0] regDst;
 wire jump, branch, memRead, memWrite, memToReg,AluSRC, regWrite, bne;
 wire [1:0] aluOp;
 
-wire [31:0] next_inst;
+wire [31:0] next_instruction;
 
-//program counter e memória de instrução
+//----------- PC, Controle e memória de instrução ------------------------
+
+
 PC progCounter(clk, 
             rst,
-            next_inst,
+            next_instruction,
             instrAddress);
 
 
@@ -44,7 +46,9 @@ mux_5_x3 regDestSelect(instruction[20:16],
 registers registerBank(clk,rst,instruction[25:21],instruction[20:16],destinationaddr,regWrite,regDestination,regSource,regTarget, //recebe o campo RS e RT da instrução, e o valor do MUX das linhas acima
  regV0,regA0); //DEBUG: Output dos valores de V0 (argumentos) e A0 (valor a ser impresso). "Simulação de Syscall"
 
-//ALU control e ALU (+ signal extender)
+// -------------- ULA e ALUControl -------------------
+
+
 wire [3:0] aluCode;
 
 //controlador da ULA, que recebe a AluOP da unidade de controle e o campo FUNCT da instrução, e passa o código da operação para a ULA
@@ -65,7 +69,7 @@ wire zero, carryOut,overflow;
 alu_32 ALU(regSource, aluSecInput,aluCode,instruction[10:6],aluOut,zero,carryOut,overflow);
 
 
-//Memória de dados
+//------------- Memória de Dados --------------------
 
 wire[31:0] memOut;
 //memória, recebendo o valor da ALU (caso seja endereço), o valor a ser escrito,
@@ -76,37 +80,46 @@ memory mem(clk,rst,aluOut[15:0],regTarget,memWrite,memRead,memOut);
 mux_32 memAlu(aluOut,memOut,memToReg,regDestination);
 
 
-//jump, branch, etc
+//----------- Lógica de Jump e Branch ---------------
 
-wire [31:0] jumpAddress;
-
-wire [31:0] branchAdress;
-mux_32 jumpBranchSel(branchAdress,jumpAddress,jump,next_inst);
-
+//Somador para o fluxo "padrão" do PC ([next_instruction] = [curr_inst]+4)
 wire [31:0] instrAddressplus4;
-wire Cout0;
+wire Cout0; //cout apenas para descarte
 full_adder_32bit Adderplus4(instrAddress,32'b0100,instrAddressplus4,Cout0);
 
-wire [31:0] shiftedImm;
-shift_left_32bit branchShift(extendedImm,shiftedImm);
-wire [31:0] branchAdd;
-
-wire Cout1;
-full_adder_32bit branchAdder(instrAddressplus4,shiftedImm,branchAdd,Cout1);
-
-wire branchMux;
-wire beqBneSelector;
-
-assign beqBneSelector = zero ^ bne;
-
-and A1(branchMux,branch,beqBneSelector);
-
-mux_32 branchSel(instrAddressplus4,branchAdd,branchMux,branchAdress);
-
+//shift left para adicionar 00 ao fim do imediato da instrução
 wire [27:0] jumpAux;
 shift_left_26bit shftlftjmp(instruction[25:0], jumpAux);
 
+wire [31:0] jumpAddress;
+//concatenador do jump
 jump_solver jump_solver(jumpAux,instrAddressplus4[31:28],jumpAddress);
+
+wire [31:0] shiftedImm;
+shift_left_32bit branchShift(extendedImm,shiftedImm);
+
+//somador que pega o endereço da instrução atual+4 e soma ao valor do deslocamento do branch
+wire [31:0] branchAddedResult;
+wire Cout1;
+full_adder_32bit branchAdder(instrAddressplus4,shiftedImm,branchAddedResult,Cout1);
+
+wire [31:0] branchAdress;
+
+//decisão do branch (Zero da ULA && flag Branch)
+wire branchMux;
+wire beqBneSelector;
+//Xor para decisão das instruções BEQ ou BNE
+//Caso a instrução seja um BEQ, o valor da flag bne é 0, logo o valor propagado é 1
+//Caso seja BNE, o valor da flag bne é 1, e o valor propagado é 0
+assign beqBneSelector = zero ^ bne; 
+
+and A1(branchMux,branch,beqBneSelector); 
+
+mux_32 branchSel(instrAddressplus4,branchAddedResult,branchMux,branchAdress);
+
+mux_32 jumpBranchSel(branchAdress,jumpAddress,jump,next_instruction);
+
+
 
 endmodule
 

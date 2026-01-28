@@ -8,28 +8,28 @@ module memory( //memória de dados
 
 
 //256 registradores de 32 bits (4 bytes)
-reg [31:0] mem [255:0]; 
+reg [31:0] dataMemory [255:0]; 
 
 /*
 integer i;
 always @(posedge rst) begin
   for(i = 0; i < 256; i = i + 1) begin
-        mem[i] = 32'b0;
+        dataMemory[i] = 32'b0;
     end 
 end  */ //Não é necessário, pois toda a memória já será carregada com o arquivo datamem.mem
 
 //leitura da memória de dados (seção .data do programa em assembly)
 always @(posedge rst) begin
-    $readmemh("./programa/datamem.mem", mem, 0, 255);
+    $readmemh("./programa/datamem.mem", dataMemory, 0, 255);
 end
 
 //define o valor da saída baseado no endereço passado para a memória (a depender da flag memRead)
-assign readData = memRead ? mem[addr[9:2]] : 32'b0;
+assign readData = memRead ? dataMemory[addr[9:2]] : 32'b0;
 
 //processo de escrita da memória 
 always @(posedge clock) begin
     if(memWrite) begin
-        mem[addr[9:2]] <= writeData;
+        dataMemory[addr[9:2]] <= writeData;
     end
 end
 

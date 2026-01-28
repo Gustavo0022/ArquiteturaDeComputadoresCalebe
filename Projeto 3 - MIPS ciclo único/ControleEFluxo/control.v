@@ -65,8 +65,6 @@ always @(*) begin
             regWrite = 1'b1;
         end
 
-        //implementar as syscalls
-
     endcase
 end
 

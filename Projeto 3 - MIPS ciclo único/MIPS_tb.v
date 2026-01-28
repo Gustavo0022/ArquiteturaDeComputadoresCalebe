@@ -16,13 +16,13 @@ initial begin
     $dumpfile("MIPS.vcd");
     $dumpvars(0,MIPS_tb);
 
-    
+
     $monitor("Valor em V0: %d",V0);
     $monitor("Valor em A0: %d", A0);
     //UTILIZE A LINHA ABAIXO PARA MONITORAR INSTRUÇÃO A INSTRUÇÃO 
    //$monitor("Tempo: %0t | PC: %d | Instr: %h | V0: %d | A0: %d", $time, processador.progCounter.value, processador.instruction, V0, A0); 
     for(i = 0; i< 256; i = i +1) begin
-        $dumpvars(0, processador.mem.mem[i]);
+        $dumpvars(0, processador.mem.dataMemory[i]);
     end
 
     for(i = 0; i< 32; i = i + 1) begin
