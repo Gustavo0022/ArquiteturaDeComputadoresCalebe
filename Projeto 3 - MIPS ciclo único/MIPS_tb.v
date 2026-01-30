@@ -5,6 +5,7 @@ reg clock;
 reg reset;
 wire signed [31:0] V0, A0;
 
+//Clock
 always #5 clock = ~clock;
 
 MIPS processador(clock, reset, V0, A0);
@@ -13,10 +14,11 @@ integer i;
 
 initial begin
     
+    //Geração do arquivo .vcd
     $dumpfile("MIPS.vcd");
     $dumpvars(0,MIPS_tb);
 
-
+    //Captura dos valores de V0 e A0 a qualquer mudança que ocorre neles
     $monitor("Valor em V0: %d",V0);
     $monitor("Valor em A0: %d", A0);
     //UTILIZE A LINHA ABAIXO PARA MONITORAR INSTRUÇÃO A INSTRUÇÃO 
@@ -30,6 +32,7 @@ initial begin
     end 
     #10
 
+    //clock inicializado em 0, e reset para zerar qualquer valor
     clock = 0;
     reset = 1;
     #5
@@ -44,6 +47,9 @@ end
 always @(posedge clock) begin
     if(V0 == 10) begin
         $display("valor final em A0 (posição no Array): %d", A0);
+        if(A0 == -1) begin
+            $display("   (Não encontrado)");
+        end
         $finish;
     end
 
