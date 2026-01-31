@@ -9,6 +9,9 @@ module alu_32(
     output wire overflow
     );
 
+//MESMA ALU DO PROJETO 1
+
+
 //Armazena o resultado do somador
 wire[31:0] resultadoSomaSubtracao;
 

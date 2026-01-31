@@ -1,4 +1,4 @@
-# PROJETO 2 - IMPLEMENTAÇÃO DE ALGORITMO EM MIPS ASSEMBLY
+# PROJETO 2 - DESCRIÇÃO DE PROCESSADOR MIPS EM VERILOG
 ### COMP0415 - ARQUITETURA DE COMPUTADORES - T03
 
 Este projeto teve como objetivo a implementação de um processador MIPS de ciclo único, bem como a execução de um algoritmo em MIPS Assembly neste processador.
@@ -103,6 +103,9 @@ Primeiro, A0 exibe o valor 0, pois é inicializado. Depois, exibe o valor a ser 
 O testbench exporta os valores de todos os sinais do módulo MIPS, e os valores na memória e nos registradores, para serem exibidos no GTKWave.
 
 Ao executar o .vvp gerado, avisos relacionados aos arrays de memória e registradores são exibidos, mas isso não interfere com o funcionamento do testbench.
+
+Por possuir valores alteráveis, o testbench não computa automaticamente se a posição do valor mostrado no processador corresponde à posição esperada. A verificação, portanto, é manual.
+
 
 ## GTKWave
 
