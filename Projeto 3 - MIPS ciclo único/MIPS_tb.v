@@ -8,6 +8,7 @@ wire signed [31:0] V0, A0;
 //Clock
 always #5 clock = ~clock;
 
+//instância do processador
 MIPS processador(clock, reset, V0, A0);
 
 integer i;
@@ -19,7 +20,7 @@ initial begin
     $dumpvars(0,MIPS_tb);
 
     //Captura dos valores de V0 e A0 a qualquer mudança que ocorre neles
-    $monitor("Valor em V0: %d",V0);
+    //$monitor("Valor em V0: %d",V0);
     $monitor("Valor em A0: %d", A0);
     //UTILIZE A LINHA ABAIXO PARA MONITORAR INSTRUÇÃO A INSTRUÇÃO 
    //$monitor("Tempo: %0t | PC: %d | Instr: %h | V0: %d | A0: %d", $time, processador.progCounter.value, processador.instruction, V0, A0); 
@@ -43,7 +44,7 @@ initial begin
     $finish;
 end
 
-
+//verifica, a cada ciclo de clock, se o valor de V0 é 10 (Código de syscall para encerrar o programa)
 always @(posedge clock) begin
     if(V0 == 10) begin
         $display("valor final em A0 (posição no Array): %d", A0);

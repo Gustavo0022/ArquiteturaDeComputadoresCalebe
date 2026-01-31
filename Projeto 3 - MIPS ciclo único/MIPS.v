@@ -11,7 +11,7 @@ wire [1:0] aluOp;
 
 wire [31:0] next_instruction;
 
-//----------- PC, Controle e memória de instrução ------------------------
+//-------- PC, Controle e memória de instrução ---------
 
 
 PC progCounter(clk, 
@@ -69,7 +69,7 @@ wire zero, carryOut,overflow;
 alu_32 ALU(regSource, aluSecInput,aluCode,instruction[10:6],aluOut,zero,carryOut,overflow);
 
 
-//------------- Memória de Dados --------------------
+//------------- Memória de Dados -----------------
 
 wire[31:0] memOut;
 //memória, recebendo o valor da ALU (caso seja endereço), o valor a ser escrito,
@@ -117,6 +117,7 @@ and A1(branchMux,branch,beqBneSelector);
 
 mux_32 branchSel(instrAddressplus4,branchAddedResult,branchMux,branchAdress);
 
+//MUX para definir se ocorrer fazer Branch ou jump no próximo ciclo
 mux_32 jumpBranchSel(branchAdress,jumpAddress,jump,next_instruction);
 
 

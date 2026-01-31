@@ -68,6 +68,7 @@ vetorMaiorQueElemento:
 naoEncontrado:
 	addi $a0, $zero, -1 	#define o valor final como o valor do pivo
 	addi $v0,$zero, 1		#...e a posição do valor desejado
+	sw $s0, 100($zero)
 	
 	addi $v0,$zero, 10 #encerra o programa
 
@@ -75,6 +76,7 @@ encontrado:
 	add $s0, $t4, $zero 	#define o valor final como o valor do pivo
 	add $a0, $s0, $zero
 	addi $v0,$zero, 1		#...e a posição do valor desejado
+	sw $s0, 80($zero)
 	
 	addi $v0,$zero, 10 #encerra o programa
 	

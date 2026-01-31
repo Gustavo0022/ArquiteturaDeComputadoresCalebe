@@ -21,7 +21,7 @@ compile: $(DUT)
 	$(IVERILOG) -o $(EXEC) $(CONTROL) $(MUXETC) $(MEM) $(ALU) $(TOP) $(TB)
 
 run:	$(EXEC)
-	./$(EXEC)
+	vvp $(EXEC)
 
 comprun: compile run
 
@@ -29,4 +29,4 @@ view: $(VCD)
 	$(GTKW) $(VCD)
 
 clean: 
-	rm -f $(VCD) $(EXEC)
+	rm $(VCD) $(EXEC)

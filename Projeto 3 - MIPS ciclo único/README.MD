@@ -13,7 +13,7 @@ Foram implementadas as instruções:
 - Branch on Equal e Branch on Not Equal
 - Addi
 
-Com pretensão de adicionar suporte ao Jump-and-Link, ao Jump-Return e a syscalls.
+Com planos futuros de adicionar suporte ao Jump-and-Link, ao Jump-Return e as syscalls.
 
 ## Funcionamento
 
@@ -30,12 +30,20 @@ Para compilar e executar apenas o testbench, basta utilizar
 make comprun
 ```
 
-### Visualizar arquivo compilado
+### Executar arquivo compilado
 
-Para ver o arquivo compilado no GTKWave, utilize
+Para executar o arquivo compilado, utilize
 
 ```sh
 make run
+```
+
+### Visualizar arquivo
+
+Para visualizar o arquivo compilado e executado no GTKWave, utilize
+
+```sh
+make view
 ```
 
 ### Excluir arquivos da compilação
@@ -55,6 +63,7 @@ O algoritmo utilizado foi a busca binária em sua versão iterativa, com o códi
 - Remoção de syscalls (discutido abaixo)
 - Substituição explícita de _li_ por _addi_
 - "Hardcoding" do valor a ser pesquisado na primeira instrução do programa
+- Adição de uma instrução sw (store word) para guardar o valor na memória (e utilizar, efetivamente, todas as instruções implementadas no processador)
 
 ### Como modificar o valor a ser pesquisado
 
@@ -87,5 +96,17 @@ Para a implementação do bne, foi utilizado uma porta lógica XOR entre a saíd
 
 ## Testbench
 
-ESCREVER DEPOIS
+O testbench do processador instancia um módulo do processador (MIPS.v), fornecendo os sinais de clock e reset. Ele captura os valores de A0 e V0, e imprime o valor em A0 a cada momento que ele é atualizado.
 
+Primeiro, A0 exibe o valor 0, pois é inicializado. Depois, exibe o valor a ser procurado. Por último, exibe a posição no array. Quando o programa chega ao fim, a posição do valor procrurado é exibida.
+
+O testbench exporta os valores de todos os sinais do módulo MIPS, e os valores na memória e nos registradores, para serem exibidos no GTKWave.
+
+Ao executar o .vvp gerado, avisos relacionados aos arrays de memória e registradores são exibidos, mas isso não interfere com o funcionamento do testbench.
+
+## GTKWave
+
+<img src="./ReadmeMedia/GTKWave.png">
+
+
+O GTKWave permite a visualização dos sinais de entrada e saída em todos os módulos, bem como o valor nos registradores e na memória. PAra isso, basta selecionar "registerBank" e "mem" no visualizador, e incluir os valores de cada endereço na visualização em onda. Para melhor visualização, é sugerido que o formato de dados seja alterado para signed decimal.

@@ -13,10 +13,9 @@ module control(
     output reg bne
 );
 
-
-
 always @(*) begin
-    //flags definidas inicialmente para 0, com 
+    //flags definidas inicialmente para 0, sendo alteradas
+    //de acordo com o requerido pelas instruções.
     regDst = 2'b00;
     branch = 1'b0;
     memRead = 1'b0;
